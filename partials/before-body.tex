@@ -1,0 +1,14 @@
+$if(has-frontmatter)$
+\frontmatter
+$endif$
+$if(title)$
+\maketitle
+$endif$
+$if(abstract)$
+\begin{abstract}
+$abstract$
+$if(keywords)$
+  \keywords{$for(keywords)$ $keywords$ $sep$ \and $endfor$}
+$endif$
+\end{abstract}
+$endif$

@@ -1,0 +1,33 @@
+$if(title)$
+\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
+$endif$ %title
+
+\author{%
+$for(authors)$$it.name.literal$$if(it.inst)$\inst{$it.inst$}$endif$$if(it.orcid)$\orcidID{$it.orcid$}$endif$ $sep$ \and $endfor$%
+} % author
+
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+%
+$if(runninghead)$\authorrunning{$runninghead$}$endif$
+
+\date{$date$}
+
+% \institute{
+%   Princeton University, Princeton NJ 08544, USA \and
+%   Springer Heidelberg, Tiergartenstr. 17, 69121 Heidelberg, Germany
+%   \email{lncs@springer.com}\\
+%   \url{http://www.springer.com/gp/computer-science/lncs} \and
+%   ABC Institute, Rupert-Karls-University Heidelberg, Heidelberg, Germany\\
+%   \email{\{abc,lncs\}@uni-heidelberg.de}
+% }
+$if(institute)$
+\institute{$for(institute)$$it.name$$if(it.address)$\\$it.address$$endif$ $if(it.email)$\email{$it.email$}$endif$$sep$ \and $endfor$}
+$endif$
+
+$if(titlegraphic)$
+\titlegraphic{\includegraphics{$titlegraphic$}}
+$endif$
+$if(logo)$
+\logo{\includegraphics{$logo$}}
+$endif$
