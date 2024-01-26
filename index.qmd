@@ -185,7 +185,7 @@ left = "trackball", right = "zoom", middle = "fov", wheel = "pull"
     height = 256L), zoom = 0.8, windowRect = c(0L, 0L, 256L, 256L
     ), family = "sans", font = 1L, cex = 1, useFreeType = TRUE) # created using dput
 
-Bar3D("stimuli/stl_files/id-04-Type1-Rep01.stl", color = "#DD1F31")
+Bar3D("stimuli/stl_files/id-04-Type1-Rep01.stl", color = "#1883C5")
 par3d(params)
 snapshot3d("image/id04-type1-rep01-rendered.png", width=2000, height = 2000, webshot = F)
 ```
