@@ -174,6 +174,8 @@ Each participant evaluated 15 different charts, with 3 charts of each display ty
 Whether participants were shown adjacent (Type 1) or separated (Type 2) comparisons was randomly determined. 
 Participants recruited from online sections of introductory statistics were shown 2D, 3D fixed, and 3D rendered charts; participants recruited from in-person sections were shown 2D, 3D rendered, and 3D printed charts. 
 See @fig-chart-types for example stimuli from each different display type. 
+The order of trials for each participant was randomly determined by the data collection app.
+
 In order to facilitate the data collection process, we 3D printed sufficient charts to create 21 different kits of 5 physical charts each. 
 Participants in the in-person condition participated in the experiment during office hours: each participant selected a kit from a bin of available options and participated in the experiment via the online app in a quiet study carrel before returning the kit to the bin. 
 The app asked for a kit ID from in-person participants; this ID was used to select digital charts which had the same ratios as those in the kit of 3D printed charts.
@@ -247,6 +249,25 @@ The ID code was designed to be informative for the experimenters but not the par
 2D bar charts were created using `ggplot2` [@ggplot2] with an extremely minimalist theme. 
 3D fixed bar charts were created using Microsoft Excel in order to most accurately represent the angle used in these sorts of charts 'in the wild'. 
 While we could have created these using some sort of snapshot of the RGL rendering from a fixed angle, we felt using the same tool would increase the overall generalizability of the results of this experiment. 
+
+## App Design
+
+Data were collected using a Shiny app [@shiny]. The app first asked participants for informed consent and basic demographic information: age range, gender identity, and highest education level, along with an identifier ("what is your favorite zoo animal") used as an additional way to distinguish participants using the applet at the same time. 
+Participants then were given three practice problems with 2D charts; these were designed to get participants comfortable with the online interface and the questions which would be asked, similar to the way @clevelandGraphicalPerceptionTheory1984 provided practice problems (@fig-practice-screen) of each type of comparison in their two experiments.
+
+![Practice screen providing participants with guidelines for how to use the sliders and identify the smaller bar.](image/03-Practice-2.png){#fig-practice-screen}
+
+
+Just before the experiment started, participants were provided with the basic trial instructions and asked for a Kit ID (one option was 'online'). 
+Participants who were online were randomly assigned a kit ID that was used throughout the remainder of the study.
+During each trial, participants were asked to evaluate a chart which was either displayed on the screen or randomly chosen from the kit of physical charts by the participant (in this case, they were asked to select the chartID from a list, as shown in @fig-chart-id). 
+
+![Screen showing the app process when a 3D printed chart was randomly selected](image/05-Experiment-01-filled-in.png){#fig-chart-id}
+
+Participants first identified which bar was smaller, and then used a slider with no numerical information to show the ratio of the smaller bar to the larger bar. 
+This differs from the numerical estimation procedure in @clevelandGraphicalPerceptionTheory1984, in that it does not require participants to estimate the number from the size ratio, but this difference was intentional - we wanted to reduce participant cognitive load as much as possible; follow up studies may be necessary to determine how much of an impact this design decision has on the results. 
+
+At the conclusion of the experiment, participants were provided with a participation code which could be entered into the learning management system to receive credit for experiment participation. This code was provided regardless of whether participants consented to their data being saved for research purposes.
 
 # Results
 
