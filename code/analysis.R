@@ -25,3 +25,5 @@ data218 <- tibble(
   mutate(results = purrr::map(results, ~mutate(., graphCorrecter = as.character(graphCorrecter))))
 
 res218 <- unnest(data218, "results")
+
+user218 <- unnest(data218, "userMat")

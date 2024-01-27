@@ -132,6 +132,21 @@ We also describe the benefits of incorporating hands-on research in introductory
 
 # Methodology
 
+
+## Participant Recruitment and Experimental Context
+<!-- In our first study, we replicated Cleveland & McGill's original sampling method, with a modern update, taking a convenience sample of professors and graduate students in our department and their adult roommates or partners. A second and third study instead sampled students taking introductory statistics courses. In order to accommodate online students, we created a variant of the study which utilized 2D, 3D fixed perspective, and 3D rendered plots. In-person participants (convenience sample and students taking in-person classes) were shown 2D, 3D rendered, and 3D printed charts. Through these experiments, we can replicate Cleveland & McGill's original study while also examining the effects of modern 3D graphics rendering methods which allow for direct interactivity or physical examination. These modern rendering options may use our 3D spatial awareness in a more natural context, overcoming previously observed accuracy impacts due to artifically rendered 3D fixed-perspective plots. -->
+Participants were recruited from sections of introductory (non-calculus based) statistics courses taught at University of Nebraska Lincoln. The experiment was integrated into the course as an experiential learning activity accompanied by several written reflections. The stages of the experiential learning activity were as follows:
+
+1. Informed consent - on the LMS during the first 2 weeks of the semester.
+2. Pre-study reflection - on the LMS prior to experiment participation. Asks participants to write 3-5 sentences about how scientific investigations happen. 
+3. Experiment participation - code from experiment entered into the LMS
+4. Post experiment reflection - on the LMS after experiment participation. Asks participants to guess at the purpose of the experiment, what the hypothesis under investigation might have been, potential sources of error, what variables were examined, and whether they thought there were elements of randomization or experimental control. 
+5. Abstract - Students read a 2-page extended abstract written for a scientific conference and reflect on how the information presented differed from their experience of participating in the experiment.
+6. Presentation - Students watch a 15-minute conference presentation about the experiment and results and reflect on how the information presented differed from the information in the abstract.
+
+During step 3, experiment participation, students were provided with an additional informed consent for the perceptual experiment. Students were able to opt-out, which prevented their data from being saved, but were required to at least participate in the process of the experiment to receive course credit, which ensured that they would be able to reflect on that experience during the later stages of the experiential learning activity.
+
+
 ## Replicating Cleveland & McGill
 <!-- In all of the studies, participants were shown about 15 2D and 3D bar charts and were asked to estimate the ratio between the smaller marked bar and the larger using a numerical slider input.  -->
 ![Types of judgments used in @clevelandGraphicalPerceptionTheory1984.](image/CM1984Fig4.png){#fig-cm-types}
@@ -142,10 +157,30 @@ Cleveland & McGill asked participants in the position-length experiment (describ
 The values involved in the judgments were $s_i = 10 \times 10^{(i-1)/12}, i = 1, ..., 10$, that is, $s_i =\{`r paste(round(10 * 10^(((1:10)-1)/12), 2), collapse = ", ")`\}$. 
 Participants judged "10 pairs of values  with ratios ranging from 0.18 to 0.83".
 There are 9 ratios available, as available bar lengths are equally spaced on the log scale; of these, the study examined 7, replicating 3 ratios twice, presumably to provide some estimate of within-participant error. 
-Examining the charts, it seems that the values used were 17.8, 26.1, 38.3, 46.4 (twice), 56.2, 68.1 (twice), and 82.5 (twice). 
+Examining the graphical results in @clevelandGraphicalPerceptionTheory1984, it seems that the values used were 17.8, 26.1, 38.3, 46.4 (twice), 56.2, 68.1 (twice), and 82.5 (twice). 
 The exact bar lengths corresponding to these ratios were not disclosed, but we added the additional constraint that no bar length was used more than twice in the creation of the data sets which would be rendered in 4 different chart types.
 Bar heights which were not to be compared were chosen "at random, but subject to certain constraints"; these constraints applied to the stacked bar charts, but not the grouped bar charts. 
 To mimic this, we used a scaled Beta(2, 2) distribution to define the size of the other 8 bars not used for comparison. 
+
+## Experiment Design
+
+<!-- For each visualization medium, we created plots with the original ratios used by Cleveland & McGill, using both Type 1 (same bar group) and Type 3 (different bar group) comparisons. 2D charts were created using ggplot2, 3D fixed perspective plots were created using Microsoft Excel, and 3D rendered or printed charts were created by exporting the data to an OpenSCAD script which was used to generate a corresponding STL file. The experiment is a balanced incomplete block design: each participant examined 5 of the 7 bar ratios, randomly allocated between Type 1 and Type 3 comparisons. For each ratio x type, participants evaluated the same comparison across all 3 presentation methods. This allows us to achieve maximum precision on method-to-method comparisons while covering the full range of ratios. In addition, we can also estimate interactions between method and comparison type. -->
+
+We created 7 sets of data containing 10 bars lengths, one for each selected ratio used in @clevelandGraphicalPerceptionTheory1984. 
+These data sets were assigned colors within chart type (so red in a 3D fixed bar chart represents a different ratio than red in a 3D printed bar chart), primarily to facilitate visually checking that combinations of 3D printed charts in a kit were all of different ratios. 
+Each data set was rendered in 4 different chart types, with two different bar arrangements corresponding to Type 1 and Type 3 comparisons. Thus, the experiment involves $7 \times 2 \times 4 = 42$ different charts. 
+
+Each participant evaluated 15 different charts, with 3 charts of each display type shown for each of 5 ratios, allocated according to @fig-design. 
+Whether participants were shown adjacent (Type 1) or separated (Type 2) comparisons was randomly determined. 
+Participants recruited from online sections of introductory statistics were shown 2D, 3D fixed, and 3D rendered charts; participants recruited from in-person sections were shown 2D, 3D rendered, and 3D printed charts. 
+See @fig-chart-types for example stimuli from each different display type. 
+In order to facilitate the data collection process, we 3D printed sufficient charts to create 21 different kits of 5 physical charts each. 
+Participants in the in-person condition participated in the experiment during office hours: each participant selected a kit from a bin of available options and participated in the experiment via the online app in a quiet study carrel before returning the kit to the bin. 
+The app asked for a kit ID from in-person participants; this ID was used to select digital charts which had the same ratios as those in the kit of 3D printed charts.
+Each day, an instructor would shuffle the kits within the bin to ensure that each kit had a reasonably equal selection probability.
+
+![Schematic showing how trials were determined for each participant.](image/design.png){#fig-design}
+
 
 ## Stimulus Creation
 This experiment uses 4 different presentations of grouped bar charts, shown in @fig-chart-types.
@@ -170,6 +205,7 @@ stl_files <- list.files('stimuli/stl_files', pattern = '.stl$')
 tmpID2 <- "id-04/Type1-Rep01.csv"
 colors2 <- rep(set85id_colors2$print_color, each = 2)
 Bar2D(datasets$data[[7]], color = colors2[tmpID2], shape_order = 1)
+Bar2D(datasets$data[[8]], color = colors2[tmpID2], shape_order = 1)
 
 ```
 
@@ -190,7 +226,6 @@ par3d(params)
 snapshot3d("image/id04-type1-rep01-rendered.png", width=2000, height = 2000, webshot = F)
 ```
 
-
 ::: {#fig-chart-types layout="[[1,1,1,1]]" layout-valign="bottom"}
 ![2D](index_files/figure-pdf/2d-bar-1.pdf)
 
@@ -203,14 +238,15 @@ snapshot3d("image/id04-type1-rep01-rendered.png", width=2000, height = 2000, web
 Rendering types used in this experiment. All charts show the same data.
 :::
 
-## Participant Recruitment
-<!-- In our first study, we replicated Cleveland & McGill's original sampling method, with a modern update, taking a convenience sample of professors and graduate students in our department and their adult roommates or partners. A second and third study instead sampled students taking introductory statistics courses. In order to accommodate online students, we created a variant of the study which utilized 2D, 3D fixed perspective, and 3D rendered plots. In-person participants (convenience sample and students taking in-person classes) were shown 2D, 3D rendered, and 3D printed charts. Through these experiments, we can replicate Cleveland & McGill's original study while also examining the effects of modern 3D graphics rendering methods which allow for direct interactivity or physical examination. These modern rendering options may use our 3D spatial awareness in a more natural context, overcoming previously observed accuracy impacts due to artifically rendered 3D fixed-perspective plots. -->
+It is relatively simple to create an all-digital experiment and keep track of the different stimuli (or render them during the experiment based on the parameters used to create them). With physical stimuli, this experiment was slightly more complicated, and as a result, we used slightly different methods to create the 3D files used for both prints and digital renderings. 
+In particular, we wanted to ensure that each chart had a label which could not easily fall off or be removed in order to ensure the ability to audit kit composition reliably.
+This meant that the direct plot-to-STL pipeline provided by rgl and rayshader was not sufficient. Instead, 
+we inscribed an ID code ("data/pilot/Set85/id-xx/Typexx-Rep01") on the bottom of the base of the charts by creating an OpenSCAD  [@mariuskintelOpenSCADDocumentation2023] template for a grouped bar chart in OpenSCAD and populated the template with values for each chart using an R script. 
+The ID code was designed to be informative for the experimenters but not the participants, as numerical IDs were randomly assigned to ratio; the use of comparison type in the ID did not provide any information that would not also be available looking at the top of the chart. 
 
-## Experiment Design
-
-
-<!-- For each visualization medium, we created plots with the original ratios used by Cleveland & McGill, using both Type 1 (same bar group) and Type 3 (different bar group) comparisons. 2D charts were created using ggplot2, 3D fixed perspective plots were created using Microsoft Excel, and 3D rendered or printed charts were created by exporting the data to an OpenSCAD script which was used to generate a corresponding STL file. The experiment is a balanced incomplete block design: each participant examined 5 of the 7 bar ratios, randomly allocated between Type 1 and Type 3 comparisons. For each ratio x type, participants evaluated the same comparison across all 3 presentation methods. This allows us to achieve maximum precision on method-to-method comparisons while covering the full range of ratios. In addition, we can also estimate interactions between method and comparison type. -->
-
+2D bar charts were created using `ggplot2` [@ggplot2] with an extremely minimalist theme. 
+3D fixed bar charts were created using Microsoft Excel in order to most accurately represent the angle used in these sorts of charts 'in the wild'. 
+While we could have created these using some sort of snapshot of the RGL rendering from a fixed angle, we felt using the same tool would increase the overall generalizability of the results of this experiment. 
 
 # Results
 
