@@ -21,6 +21,12 @@ keywords: ['teaching', 'graphics', 'user-study']
 abstract: |
   Something useful here
 
+execute:
+  echo: false
+  message: false
+  warning: false
+  error: false
+
 format: 
   pdf: 
     cite-method: biblatex
@@ -45,7 +51,10 @@ library(ggplot2)
 library(dplyr)
 library(purrr)
 library(tidyr)
-knitr::opts_knit$set(message = F, warning = F, error = F, dpi=300)
+knitr::opts_knit$set(message = F, warning = F, error = F, echo = F, fig.show = 'hold', dpi=300)
+
+theme_set(theme_bw())
+source("code/data_cleaning.R")
 ```
 
 <!-- # Introduction -->
@@ -135,7 +144,9 @@ We also describe the benefits of incorporating hands-on research in introductory
 
 ## Participant Recruitment and Experimental Context
 <!-- In our first study, we replicated Cleveland & McGill's original sampling method, with a modern update, taking a convenience sample of professors and graduate students in our department and their adult roommates or partners. A second and third study instead sampled students taking introductory statistics courses. In order to accommodate online students, we created a variant of the study which utilized 2D, 3D fixed perspective, and 3D rendered plots. In-person participants (convenience sample and students taking in-person classes) were shown 2D, 3D rendered, and 3D printed charts. Through these experiments, we can replicate Cleveland & McGill's original study while also examining the effects of modern 3D graphics rendering methods which allow for direct interactivity or physical examination. These modern rendering options may use our 3D spatial awareness in a more natural context, overcoming previously observed accuracy impacts due to artifically rendered 3D fixed-perspective plots. -->
-Participants were recruited from sections of introductory (non-calculus based) statistics courses taught at University of Nebraska Lincoln. The experiment was integrated into the course as an experiential learning activity accompanied by several written reflections. The stages of the experiential learning activity were as follows:
+Participants were recruited from sections of introductory (non-calculus based) statistics courses taught at University of Nebraska Lincoln during the Summer and Fall of 2023. 
+The experiment was integrated into the course as an experiential learning activity accompanied by several written reflections. 
+The stages of the experiential learning activity were as follows:
 
 1. Informed consent - on the LMS during the first 2 weeks of the semester.
 2. Pre-study reflection - on the LMS prior to experiment participation. Asks participants to write 3-5 sentences about how scientific investigations happen. 
@@ -170,11 +181,12 @@ We created 7 sets of data containing 10 bars lengths, one for each selected rati
 These data sets were assigned colors within chart type (so red in a 3D fixed bar chart represents a different ratio than red in a 3D printed bar chart), primarily to facilitate visually checking that combinations of 3D printed charts in a kit were all of different ratios. 
 Each data set was rendered in 4 different chart types, with two different bar arrangements corresponding to Type 1 and Type 3 comparisons. Thus, the experiment involves $7 \times 2 \times 4 = 42$ different charts. 
 
-Each participant evaluated 15 different charts, with 3 charts of each display type shown for each of 5 ratios, allocated according to @fig-design. 
+Each participant evaluated either 15 or 20 different charts, with a charts of each display type shown for each of 5 ratios, allocated according to @fig-design. 
 Whether participants were shown adjacent (Type 1) or separated (Type 2) comparisons was randomly determined. 
 Participants recruited from online sections of introductory statistics were shown 2D, 3D fixed, and 3D rendered charts; participants recruited from in-person sections were shown 2D, 3D rendered, and 3D printed charts. 
-See @fig-chart-types for example stimuli from each different display type. 
-The order of trials for each participant was randomly determined by the data collection app.
+Due to an application configuration error, some in-person participants were initially shown 2D, 3D fixed, 3D rendered, and 3D printed charts, for a total of 20 trials. This error was fixed after the first 2023 summer session.
+@fig-chart-types provides example stimuli from each different display type. 
+The order of trials for each participant was randomly determined by the data collection app, and in the case of 3D printed chart trials, by the participant themselves.
 
 In order to facilitate the data collection process, we 3D printed sufficient charts to create 21 different kits of 5 physical charts each. 
 Participants in the in-person condition participated in the experiment during office hours: each participant selected a kit from a bin of available options and participated in the experiment via the online app in a quiet study carrel before returning the kit to the bin. 
@@ -272,6 +284,95 @@ At the conclusion of the experiment, participants were provided with a participa
 # Results
 
 <!-- Results suggest that across all 3 experiments, the impact of visualization type is relatively small, that is, all effects were minimal when comparing estimation accuracy and presentation format. As in @heerCrowdsourcingGraphicalPerception2010, we found no statistically significant difference between Type 1 and 3 comparisons. Data presented in this abstract represents a single summer semester's worth of pilot data, while the conference paper will present the results of a full year of data collection (excluding the student pilot data presented here). -->
+
+## Demographics
+Overall, approximately `r nrow(user218)` participants met the inclusion criteria (above the age of majority and a student in the class). This number is approximate because we recorded data anonymously, and can thus only track unique sessions where participants completed the demographic information - this information intentionally cannot be linked to responses for privacy purposes. 
+
+```{r demographics}
+#| fig-width: 4
+#| fig-height: 3
+#| fig-show: "hold"
+#| fig-subcap: 
+#|   - Age
+#|   - Gender Identity
+#|   - Education
+#| fig-cap: Participant Demographics. As participants were recruited from undergraduate statistics classes, imbalances in age, gender, and education level are to be expected.
+#| label: fig-demographics
+#| echo: false
+#| layout-ncol: 3
+#| warning: false
+#| message: false
+#| error: false
+
+
+user218 %>%
+ggplot(aes(x = age)) + geom_bar() + theme_bw() + ggtitle("Age of Participants") + theme(axis.title = element_blank()) + geom_text(aes(x = age, y = after_stat(count), label = after_stat(count)), stat = "count", vjust = 0, nudge_y = 1) + 
+  scale_y_continuous(expand = expansion(0, 5))
+
+user218 %>%
+ggplot(aes(x = gender)) + geom_bar() + theme_bw() + ggtitle("Gender Identity of Participants") + theme(axis.title = element_blank()) + geom_text(aes(x = gender, y = after_stat(count), label = after_stat(count)), stat = "count", vjust = 0, nudge_y = 1) + 
+  scale_y_continuous(expand = expansion(0, 5))
+
+edlab <- data.frame(education = ed_levels, lab = c("High\nSchool", "Some\nUG", "UG\nDegree", "Some\nGrad", "Grad\nDegree", "No\nAnswer") %>% factor(., levels = ., ordered = T))
+user218 %>%
+  left_join(edlab, by = "education") %>%
+ggplot(aes(x = lab)) + geom_bar() + theme_bw() + ggtitle("Education Level of Participants") + theme(axis.title = element_blank()) + geom_text(aes(x = lab, y = after_stat(count), label = after_stat(count)), stat = "count", vjust = 0, nudge_y = 1) + 
+  scale_y_continuous(expand = expansion(0, 5))
+```
+
+Of these students, there were `r nrow(unique_user_data)` participants who completed at least 10 trials (`r mean(unique_user_data$ntrials >= 15)*100`% completed 15 trials). 
+
+
+## Data Cleaning
+In studies where participants are asked to perform a task, it is typically important to utilize both attention checks (semi-obvious answers that check whether the participant is paying attention) and to be aware of participants who try to submit the study as quickly as possible without completing the task as directed. 
+In this study, we asked participants to identify the smaller marked bar, as in the original study. Of the `r nrow(unnest(unique_user_data, "trials"))`trials completed by the `r nrow(unique_user_data)` participants with at least 10 trials, `r sprintf("%.02f%%", 100*sum(unique_user_data$ntrials_correct)/sum(unique_user_data$ntrials))` identified the correct bar.
+Trials where this attention check was not answered correctly have been excluded from the study with the rationale that the ratio between the smaller and larger bar (which is limited to a range of 0 - 100%) is nonsensical if the smaller bar is not identified correctly.
+
+In addition, we noticed that `r sprintf("%.02f%%", 100*mean(unnest(unique_user_data, "trials")$byHowMuch == 50))` of the trials completed had a response of exactly 50% (the default value of the slider). 
+In particular, `r sum(unique_user_data$flatline_idx > .5)` participants completed at least 50% of trials with a response of exactly 50%; these participants have been excluded from the study on the grounds that they were clearly not engaging with the purpose of the experiment. 
+
+After applying these basic criteria for inclusion in the data analysis, we have `r nrow(results)` trials completed by `r nrow(reasonable_user_data)` participants remaining for further analysis. 
+
+
+## Summary Statistics
+There are far fewer trials of 3D printed charts, largely because only online sections were offered during the summer, and relatively few in-person sections participated in this experiment during the fall (@fig-summary). 
+As a result, we will exclude the 3D printed charts from further analysis in this study.
+
+```{r}
+#| label: fig-summary
+#| fig-width: 8
+#| fig-height: 2
+#| fig-cap: Number of trials across ratio and plot display type.
+#| echo: false
+ggplot(results, aes(x = factor(ratioLabel), fill = plot)) + 
+  geom_bar(position = "stack") + 
+  guides(fill = guide_legend(title = "Plot Type")) + 
+  ylab("# Trials") + 
+  xlab("Correct Ratio") + 
+  ggtitle("Trial Distribution by Plot Type and Ratio")
+```
+
+Examining participant responses in @fig-violin-accuracy, it is clear why @clevelandGraphicalPerceptionTheory1984 worked with the midmeans of the responses - there is quite a bit of variability in the estimates created by participants, sometimes in ways that do not make much sense. XXX Cite Spence paper XXX
+
+```{r}
+#| label: fig-violin-accuracy
+#| fig-width: 6
+#| fig-height: 2
+#| fig-cap: Violin plots of responses relative to true ratio values. It is clear that some participants misunderstood the estimation task, while others simply did not move the slider from 50%. Nonetheless, there is a general relationship between the true ratio and the central values of the distribution of estimates. Note that 3D printed plots have been removed from this chart because there were too few responses to estimate a distribution.
+#| echo: false
+
+results %>%
+  filter(plot != "3D Print") %>%
+ggplot(aes(x = ratioLabel, y = byHowMuch)) + 
+  geom_abline(slope = 1, intercept = 0, color = "grey") + 
+  geom_jitter(alpha = .25) + 
+  geom_violin(aes(group = factor(ratioLabel)), alpha = .5, draw_quantiles = c(.25, .5, .75)) + 
+  facet_wrap(~plot) + theme_bw() + 
+  scale_x_continuous("True Bar Ratio", breaks = round(unique(results$true_ratio*100)), minor_breaks = NULL, limits = c(0, 100)) + 
+  scale_y_continuous("Estimated Bar Ratio") + 
+  coord_fixed()
+```
+
 
 
 # Discussion
