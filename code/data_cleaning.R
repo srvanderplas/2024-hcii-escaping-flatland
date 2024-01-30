@@ -131,7 +131,7 @@ user218 <- user218 %>% filter(participantID %in% unique_user_data$participantID)
 userno <- bind_rows(userno, tibble(step = "Data exists", n = nrow(user218)))
 
 reasonable_user_data <- unique_user_data %>%
-  filter(flatline_idx < 0.5)
+  filter(flatline_idx != 1)
 
 user218 <- user218 %>% filter(participantID %in% reasonable_user_data$participantID)
 userno <- bind_rows(userno, tibble(step = "Selects 50% less than half the time", n = nrow(user218)))
