@@ -373,6 +373,18 @@ ggplot(aes(x = ratioLabel, y = byHowMuch)) +
   coord_fixed()
 ```
 
+## Midmeans analysis
+
+If we repeat the analysis performed in @clevelandGraphicalPerceptionTheory1984, examining a 25% trimmed mean of the log absolute error (with a correction), $$\log_2\left(\left| \text{Estimated Percent} - \text{True Percent}\right| + ^1\!\!/_8\right),$$ we find that there are very few differences across plot types. Comparing to the actual values reported in Cleveland & McGill, however, we find that errors are much higher in this population under the web-based protocol we are using for data collection than similar midmeans and intervals reported in @clevelandGraphicalPerceptionTheory1984. Our errors  are also larger than those reported in @heerCrowdsourcingGraphicalPerception2010, which used an online sample but otherwise followed essentially the same procedures using similar stimuli to @clevelandGraphicalPerceptionTheory1984.
+It is possible that introductory statistics students do not estimate as accurately as academics and their wives [@clevelandGraphicalPerceptionTheory1984] or paid participants through Amazon Mechanical Turk [@heerCrowdsourcingGraphicalPerception2010]; certainly, the number of participants removed for answering 50% for all trials suggests that at least some participants did not take the task seriously.
+Another potential explanation is that some of these issues stem from the measures we took to minimize cognitive load while avoiding rounding and clustering of responses around benchmark values. 
+In this study, we used a slider with endpoints marked 0 and 100, but no other numerical feedback was provided - no tick marks, no value of the current estimate. While our goal was to remove rounding tendencies, it is entirely possible that we instead introduced higher error values because participants could not do the spatial mapping operation without going through numeric values; then, participants had to invert this process and map back onto a spatial dimension without any visual aids. 
+Further studies will be necessary to distinguish between these two issues. 
+It may also be helpful to provide feedback on a few demo trials before participating in the experiment in order to ensure that everyone is comfortable with the input mechanisms; the current demo may not provide enough active feedback to really get participants familiar with the interface.
+
+## Student Responses
+
+Part of the goal of using this experiment as an experiential learning activity was to introduce the idea that not all charts are equally effective to introductory statistics students. 
 
 
 # Discussion
