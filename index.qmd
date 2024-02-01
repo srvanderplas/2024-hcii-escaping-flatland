@@ -329,14 +329,14 @@ In this study, we asked participants to identify the smaller marked bar, as in t
 Trials where this attention check was not answered correctly have been excluded from the study with the rationale that the ratio between the smaller and larger bar (which is limited to a range of 0 - 100%) is nonsensical if the smaller bar is not identified correctly.
 
 In addition, we noticed that `r sprintf("%.02f%%", 100*mean(unnest(unique_user_data, "trials")$byHowMuch == 50))` of the trials completed had a response of exactly 50% (the default value of the slider). 
-In particular, `r sum(unique_user_data$flatline_idx == 1)` participants completed all trials with a response of 50%; these participants have been excluded from the study on the grounds that they were clearly not engaging with the purpose of the experiment. 
+In particular, `r sum(unique_user_data$flatline_idx > .5)` participants completed at least 50% of trials with a response of exactly 50%; these participants have been excluded from the study on the grounds that they were clearly not engaging with the purpose of the experiment. 
 
 After applying these basic criteria for inclusion in the data analysis, we have `r nrow(results)` trials completed by `r nrow(reasonable_user_data)` participants remaining for further analysis. 
 
 
 ## Summary Statistics
 There are far fewer trials of 3D printed charts, largely because only online sections were offered during the summer, and relatively few in-person sections participated in this experiment during the fall (@fig-summary). 
-As a result, we will exclude the 3D printed charts from further analysis in this study; we should be collecting significantly more in-person data during Spring 2024.
+As a result, we will exclude the 3D printed charts from further analysis in this study.
 
 ```{r}
 #| label: fig-summary
@@ -352,86 +352,28 @@ ggplot(results, aes(x = factor(ratioLabel), fill = plot)) +
   ggtitle("Trial Distribution by Plot Type and Ratio")
 ```
 
-Examining participant responses in @fig-accuracy-overall, it is clear why @clevelandGraphicalPerceptionTheory1984 worked with the midmeans of the responses - there is quite a bit of variability in the estimates created by participants, sometimes in ways that do not make much sense. 
+Examining participant responses in @fig-violin-accuracy, it is clear why @clevelandGraphicalPerceptionTheory1984 worked with the midmeans of the responses - there is quite a bit of variability in the estimates created by participants, sometimes in ways that do not make much sense. XXX Cite Spence paper XXX
 
 ```{r}
-#| label: fig-accuracy-overall
-#| fig-width: 8
-#| fig-height: 3
-#| fig-cap: Box plots of the difference between responses and true ratio values. Note that 3D printed plots have been removed from this chart because there were too few responses to estimate a distribution. 
+#| label: fig-violin-accuracy
+#| fig-width: 6
+#| fig-height: 2
+#| fig-cap: Violin plots of responses relative to true ratio values. It is clear that some participants misunderstood the estimation task, while others simply did not move the slider from 50%. Nonetheless, there is a general relationship between the true ratio and the central values of the distribution of estimates. Note that 3D printed plots have been removed from this chart because there were too few responses to estimate a distribution.
 #| echo: false
-
-# results %>%
-#   filter(plot != "3D Print") %>%
-# ggplot(aes(x = ratioLabel, y = byHowMuch)) + 
-#   geom_abline(slope = 1, intercept = 0, color = "grey") + 
-#   geom_jitter(alpha = .25) + 
-#   geom_violin(aes(group = factor(ratioLabel)), alpha = .5, draw_quantiles = c(.25, .5, .75)) + 
-#   facet_wrap(~plot) + theme_bw() + 
-#   scale_x_continuous("True Bar Ratio", breaks = round(unique(results$true_ratio*100)), minor_breaks = NULL, limits = c(0, 100)) + 
-#   scale_y_continuous("Estimated Bar Ratio") + 
-#   coord_fixed()
 
 results %>%
   filter(plot != "3D Print") %>%
-  mutate(plot = str_replace(plot, " ", "\n")) %>%
-  mutate(`True Ratio` = ratioLabel,
-         Comparison = str_replace_all(graphtype, c("Type1" = "Adjacent", "Type3" = "Separated"))) %>%
-ggplot(aes(x = plot, y = abs(byHowMuch - ratioLabel))) + 
-  geom_hline(yintercept = 0, color = "black") + 
+ggplot(aes(x = ratioLabel, y = byHowMuch)) + 
+  geom_abline(slope = 1, intercept = 0, color = "grey") + 
   geom_jitter(alpha = .25) + 
-  geom_boxplot(trim = T, alpha = .5, outlier.shape = NA) + 
-  facet_grid(.~`True Ratio`, labeller = label_both) + theme_bw() + 
-  scale_y_continuous("Absolute Error: Estimating relative size of smaller to larger bar") + 
-  theme(axis.title.x = element_blank())
+  geom_violin(aes(group = factor(ratioLabel)), alpha = .5, draw_quantiles = c(.25, .5, .75)) + 
+  facet_wrap(~plot) + theme_bw() + 
+  scale_x_continuous("True Bar Ratio", breaks = round(unique(results$true_ratio*100)), minor_breaks = NULL, limits = c(0, 100)) + 
+  scale_y_continuous("Estimated Bar Ratio") + 
+  coord_fixed()
 ```
 
-## Midmeans analysis
 
-If we repeat the analysis performed in @clevelandGraphicalPerceptionTheory1984, examining a 25% trimmed mean of the log absolute error (with a correction), $$\log_2\left(\left| \text{Estimated Percent} - \text{True Percent}\right| + ^1\!\!/_8\right),$$ we find that there are very few differences across plot types. Comparing to the actual values reported in Cleveland & McGill, however, we find that errors are much higher in this population under the web-based protocol we are using for data collection than similar midmeans and intervals reported in @clevelandGraphicalPerceptionTheory1984. Our errors  are also larger than those reported in @heerCrowdsourcingGraphicalPerception2010, which used an online sample but otherwise followed essentially the same procedures using similar stimuli to @clevelandGraphicalPerceptionTheory1984.
-It is possible that introductory statistics students do not estimate as accurately as academics and their wives [@clevelandGraphicalPerceptionTheory1984] or paid participants through Amazon Mechanical Turk [@heerCrowdsourcingGraphicalPerception2010]; certainly, the number of participants removed for answering 50% for all trials suggests that at least some participants did not take the task seriously.
-Another potential explanation is that some of these issues stem from the measures we took to minimize cognitive load while avoiding rounding and clustering of responses around benchmark values. In this study, we used a slider with endpoints marked 0 and 100, but no other numerical feedback was provided - no tick marks, no value of the current estimate. While our goal was to remove rounding tendencies, it is entirely possible that we instead introduced higher error values because participants could not do the spatial mapping operation without going through numeric values; then, participants had to invert this process and map back onto a spatial dimension without any visual aids. 
-Further studies will be necessary to distinguish between these two issues. It may be necessary to provide feedback on a few demo trials before participating in the experiment in order to ensure that everyone is comfortable with the input mechanisms; the current demo may not provide enough active feedback to really get participants familiar with the interface.
-
-```{r}
-#| label: fig-accuracy-midmeans
-#| fig-width: 8
-#| fig-height: 3
-#| fig-cap: Midmeans and 95% bootstrap confidence intervals for each chart type, across separated and adjacent (Type 1 and 3) comparisons. 
-#| echo: false
-#| cache: true
-
-bs_fun <- function(x) {
-  y <- sample(x, length(x), replace = T)
-  tibble(mean = mean(y), midmean = mean(y, trim = .25), median = median(y))
-}
-
-bs_dist <- function(x, size = 1000) {
-  purrr::map_df(1:size, ~as.data.frame(bs_fun(x)))
-}
-
-midmean_log2diff <- results %>% 
-  filter(plot!="3D Print") %>%
-  nest(.by = c(ratioLabel, plot), .key = "data") %>% 
-  mutate(    
-    bsdist = purrr::map(data, ~bs_dist(.$log2diff, size = 1000)),
-    midmean = purrr::map_dbl(data, ~mean(.$log2diff, trim = .25))
-  ) %>%
-  mutate(
-    lb = purrr::map_dbl(bsdist, ~quantile(.$midmean, .05)),
-    ub = purrr::map_dbl(bsdist, ~quantile(.$midmean, .95))) %>%
-  ungroup()
-
-ggplot(midmean_log2diff) + 
-  geom_pointrange(aes(x = ratioLabel, y = midmean, ymin = lb, ymax = ub, color = plot), position = position_dodge(width = 3)) +
-  ylab("Log (Abs Error + 1/8)") + 
-  xlab("True Percent") + 
-  guides(color = guide_legend("Plot Type")) + 
-  ggtitle("Midmeans of Log Absolute Error") + 
-  scale_color_manual(values = c( "#FF8484", "#4DCCBD", "#2374AB")) + 
-  scale_x_continuous(breaks = unique(midmean_log2diff$ratioLabel), minor_breaks = NULL) + 
-  theme(legend.position = c(0.01, .99), legend.justification = c(0.01, .99))
-```
 
 # Discussion
 
