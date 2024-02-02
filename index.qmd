@@ -112,7 +112,7 @@ ggplot(dframe, aes(x = xstart, xend = xend, y = ystart, yend = yend)) + geom_seg
 <!-- Many optical illusions result from perceptual mismatches of 3D visual heuristics and 2D, planar, data representations [@vanderplasSignsSineIllusion2015; @daySineIllusion1991; @carswell1991graphing; @fischer2000irrelevant; @zacksReadingBarGraphs1998a]; more realistic renderings available with modern tools might change the outcome of the Cleveland & McGill comparison of 2D vs. 3D accuracy.  -->
 
 Because the visual context of 3D graphical renderings has changed so significantly in the past 40 years, it is important to reassess the common guidance to avoid using the third dimension in data visualization in light of new technological capabilities. 
-It is common for artists to intentionally leverage our 3D visual system to create illusions in two dimensions that give a three-dimensional effect, as in @fig-sidewalk-art; unfortunately, similar misperceptions can be unintentionally triggered by common charts: streamgraphs, candlestick charts, and even confidence interval bands.
+It is common for artists to intentionally leverage our 3D visual system to create illusions in two dimensions that give a three-dimensional effect, as in @fig-sidewalk-art; unfortunately, similar misperceptions can be unintentionally triggered by common charts: stream graphs, candlestick charts, and even confidence interval bands.
 
 ::: {#fig-misperception-2d layout="[[1, -.1, 1]]"}
 ![Sidewalk art by Zebit in Liverpool which leverages visual heuristics to provide the illusion of depth. Image by [Bill Hunt](https://www.flickr.com/photos/billhunt/7006199932).](image/7006199932_7302488470_o.jpg){#fig-sidewalk-art}
@@ -143,7 +143,7 @@ We also describe the benefits of incorporating hands-on research in introductory
 
 
 ## Participant Recruitment and Experimental Context
-<!-- In our first study, we replicated Cleveland & McGill's original sampling method, with a modern update, taking a convenience sample of professors and graduate students in our department and their adult roommates or partners. A second and third study instead sampled students taking introductory statistics courses. In order to accommodate online students, we created a variant of the study which utilized 2D, 3D fixed perspective, and 3D rendered plots. In-person participants (convenience sample and students taking in-person classes) were shown 2D, 3D rendered, and 3D printed charts. Through these experiments, we can replicate Cleveland & McGill's original study while also examining the effects of modern 3D graphics rendering methods which allow for direct interactivity or physical examination. These modern rendering options may use our 3D spatial awareness in a more natural context, overcoming previously observed accuracy impacts due to artifically rendered 3D fixed-perspective plots. -->
+<!-- In our first study, we replicated Cleveland & McGill's original sampling method, with a modern update, taking a convenience sample of professors and graduate students in our department and their adult roommates or partners. A second and third study instead sampled students taking introductory statistics courses. In order to accommodate online students, we created a variant of the study which utilized 2D, 3D fixed perspective, and 3D rendered plots. In-person participants (convenience sample and students taking in-person classes) were shown 2D, 3D rendered, and 3D printed charts. Through these experiments, we can replicate Cleveland & McGill's original study while also examining the effects of modern 3D graphics rendering methods which allow for direct interactivity or physical examination. These modern rendering options may use our 3D spatial awareness in a more natural context, overcoming previously observed accuracy impacts due to artificially rendered 3D fixed-perspective plots. -->
 Participants were recruited from sections of introductory (non-calculus based) statistics courses taught at University of Nebraska Lincoln during the Summer and Fall of 2023. 
 The experiment was integrated into the course as an experiential learning activity accompanied by several written reflections. 
 The stages of the experiential learning activity were as follows:
@@ -254,13 +254,13 @@ Rendering types used in this experiment. All charts show the same data.
 
 It is relatively simple to create an all-digital experiment and keep track of the different stimuli (or render them during the experiment based on the parameters used to create them). With physical stimuli, this experiment was slightly more complicated, and as a result, we used slightly different methods to create the 3D files used for both prints and digital renderings. 
 In particular, we wanted to ensure that each chart had a label which could not easily fall off or be removed in order to ensure the ability to audit kit composition reliably.
-This meant that the direct plot-to-STL pipeline provided by rgl and rayshader was not sufficient. Instead, 
+This meant that the direct plot-to-STL pipeline provided by `rgl` [@rgl] and `rayshader` [@rayshader] was not sufficient. Instead, 
 we inscribed an ID code ("data/pilot/Set85/id-xx/Typexx-Rep01") on the bottom of the base of the charts by creating an OpenSCAD  [@mariuskintelOpenSCADDocumentation2023] template for a grouped bar chart in OpenSCAD and populated the template with values for each chart using an R script. 
 The ID code was designed to be informative for the experimenters but not the participants, as numerical IDs were randomly assigned to ratio; the use of comparison type in the ID did not provide any information that would not also be available looking at the top of the chart. 
 
 2D bar charts were created using `ggplot2` [@ggplot2] with an extremely minimalist theme. 
 3D fixed bar charts were created using Microsoft Excel in order to most accurately represent the angle used in these sorts of charts 'in the wild'. 
-While we could have created these using some sort of snapshot of the RGL rendering from a fixed angle, we felt using the same tool would increase the overall generalizability of the results of this experiment. 
+While we could have created these using some sort of snapshot of the RGL rendering from a fixed angle, we felt using the same tool used in industry would increase external validity. 
 
 ## App Design
 
