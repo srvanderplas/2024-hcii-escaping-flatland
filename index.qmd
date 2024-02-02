@@ -8,7 +8,7 @@ author:
     orcid: 0000-0002-9132-6932
     inst: 1
   - name: Tyler Wiederich
-    orcid: ""
+    orcid: 0009-0006-8131-5822
     inst: 1
 
 institute:
