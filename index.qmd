@@ -144,7 +144,7 @@ We also describe the benefits of incorporating hands-on research in introductory
 
 ## Participant Recruitment and Experimental Context
 <!-- In our first study, we replicated Cleveland & McGill's original sampling method, with a modern update, taking a convenience sample of professors and graduate students in our department and their adult roommates or partners. A second and third study instead sampled students taking introductory statistics courses. In order to accommodate online students, we created a variant of the study which utilized 2D, 3D fixed perspective, and 3D rendered plots. In-person participants (convenience sample and students taking in-person classes) were shown 2D, 3D rendered, and 3D printed charts. Through these experiments, we can replicate Cleveland & McGill's original study while also examining the effects of modern 3D graphics rendering methods which allow for direct interactivity or physical examination. These modern rendering options may use our 3D spatial awareness in a more natural context, overcoming previously observed accuracy impacts due to artificially rendered 3D fixed-perspective plots. -->
-Participants were recruited from sections of introductory (non-calculus based) statistics courses taught at University of Nebraska Lincoln during the Summer and Fall of 2023. 
+Participants were recruited from online and in-person sections of introductory (non-calculus based) statistics courses taught at University of Nebraska Lincoln during the Summer and Fall of 2023; overall, students from sections led by 3 different instructors took part in the experiment. 
 The experiment was integrated into the course as an experiential learning activity accompanied by several written reflections. 
 The stages of the experiential learning activity were as follows:
 
@@ -286,7 +286,7 @@ At the conclusion of the experiment, participants were provided with a participa
 <!-- Results suggest that across all 3 experiments, the impact of visualization type is relatively small, that is, all effects were minimal when comparing estimation accuracy and presentation format. As in @heerCrowdsourcingGraphicalPerception2010, we found no statistically significant difference between Type 1 and 3 comparisons. Data presented in this abstract represents a single summer semester's worth of pilot data, while the conference paper will present the results of a full year of data collection (excluding the student pilot data presented here). -->
 
 ## Demographics
-Overall, approximately `r nrow(user218)` participants met the inclusion criteria (above the age of majority and a student in the class). This number is approximate because we recorded data anonymously, and can thus only track unique sessions where participants completed the demographic information - this information intentionally cannot be linked to responses for privacy purposes. 
+Overall, approximately `r filter(userno, step == "Consent")$n[1]` participants met the inclusion criteria (above the age of majority and a student in the class). This number is approximate because we recorded data anonymously, and can thus only track unique sessions where participants completed the demographic information - this information intentionally cannot be linked to responses for privacy purposes. 
 
 ```{r demographics}
 #| fig-width: 4
@@ -320,18 +320,19 @@ ggplot(aes(x = lab)) + geom_bar() + theme_bw() + ggtitle("Education Level of Par
   scale_y_continuous(expand = expansion(0, 5))
 ```
 
-Of these students, there were `r nrow(unique_user_data)` participants who completed at least 10 trials (`r mean(unique_user_data$ntrials >= 15)*100`% completed 15 trials). 
+Of these students, there were `r nrow(unique_user_data)` participants who completed at least 10 trials. 
 
 
 ## Data Cleaning
 In studies where participants are asked to perform a task, it is typically important to utilize both attention checks (semi-obvious answers that check whether the participant is paying attention) and to be aware of participants who try to submit the study as quickly as possible without completing the task as directed. 
-In this study, we asked participants to identify the smaller marked bar, as in the original study. Of the `r nrow(unnest(unique_user_data, "trials"))`trials completed by the `r nrow(unique_user_data)` participants with at least 10 trials, `r sprintf("%.02f%%", 100*sum(unique_user_data$ntrials_correct)/sum(unique_user_data$ntrials))` identified the correct bar.
+In this study, we asked participants to identify the smaller marked bar, as in the original study. 
+Of the `r nrow(unnest(unique_user_data, "trials"))` trials completed by the `r nrow(unique_user_data)` participants with at least 10 trials, `r sprintf("%.02f%%", 100*sum(unique_user_data$ntrials_correct)/sum(unique_user_data$ntrials))`  identified the correct bar.
 Trials where this attention check was not answered correctly have been excluded from the study with the rationale that the ratio between the smaller and larger bar (which is limited to a range of 0 - 100%) is nonsensical if the smaller bar is not identified correctly.
 
 In addition, we noticed that `r sprintf("%.02f%%", 100*mean(unnest(unique_user_data, "trials")$byHowMuch == 50))` of the trials completed had a response of exactly 50% (the default value of the slider). 
 In particular, `r sum(unique_user_data$flatline_idx > .5)` participants completed at least 50% of trials with a response of exactly 50%; these participants have been excluded from the study on the grounds that they were clearly not engaging with the purpose of the experiment. 
 
-After applying these basic criteria for inclusion in the data analysis, we have `r nrow(results)` trials completed by `r nrow(reasonable_user_data)` participants remaining for further analysis. 
+After applying these basic criteria for inclusion in the data analysis, we have  `r nrow(results)` trials completed by `r nrow(reasonable_user_data)`  participants remaining for further analysis. 
 
 
 ## Summary Statistics
@@ -352,11 +353,11 @@ ggplot(results, aes(x = factor(ratioLabel), fill = plot)) +
   ggtitle("Trial Distribution by Plot Type and Ratio")
 ```
 
-Examining participant responses in @fig-violin-accuracy, it is clear why @clevelandGraphicalPerceptionTheory1984 worked with the midmeans of the responses - there is quite a bit of variability in the estimates created by participants, sometimes in ways that do not make much sense. XXX Cite Spence paper XXX
+Examining participant responses in @fig-violin-accuracy, it is clear why @clevelandGraphicalPerceptionTheory1984 worked with the midmeans of the responses - there is quite a bit of variability in the estimates created by participants, sometimes in ways that do not make much sense. 
 
 ```{r}
 #| label: fig-violin-accuracy
-#| fig-width: 6
+#| fig-width: 9
 #| fig-height: 2
 #| fig-cap: Violin plots of responses relative to true ratio values. It is clear that some participants misunderstood the estimation task, while others simply did not move the slider from 50%. Nonetheless, there is a general relationship between the true ratio and the central values of the distribution of estimates. Note that 3D printed plots have been removed from this chart because there were too few responses to estimate a distribution.
 #| echo: false
@@ -387,8 +388,9 @@ It may also be helpful to provide feedback on a few demo trials before participa
 Part of the goal of using this experiment as an experiential learning activity was to introduce the idea that not all charts are equally effective to introductory statistics students. 
 In addition, we hoped to reinforce concepts taught in class, such as randomization, experimental control, blocking, and interpretation of results, using experiential learning to help students make the connection between theoretical concepts and how these concepts play out in real life. 
 
-In Fall 2023, this project was offered to students in a 75-person section of online 218 as extra credit. 
-About 40 students both participated and consented to having their responses shared across the 6 different parts of the experiment; only 4 of these components have meaningful responses beyond the question of providing informed consent or a completion code for the experiment, and of these, we will briefly consider questions from the post_experiment reflection, abstract presentation, and presentation. The pre-experiment reflection, which asked students to think about how scientific experimentation works, is less specific to this experiment and will thus be omitted. 
+In Fall 2023, this project was offered to students in a 75-person section of online introductory statistics as extra credit. 
+About 40 students both participated and consented to having their responses shared across the 6 different parts of the experiment; only 4 of these components have meaningful responses beyond the question of providing informed consent or a completion code for the experiment, and of these, we will briefly consider questions from the post-experiment reflection, abstract presentation, and presentation. 
+The pre-experiment reflection, which asked students to think about how scientific experimentation works, is less specific to this experiment and will thus be omitted. 
 
 In the next 3 subsections, we will provide some brief excerpts from student responses which provide some insight into student learning and engagement with the experiment. 
 Text files with all student responses for each question are available on github.
@@ -399,10 +401,10 @@ Students were asked to complete a reflection activity 1-2 weeks after completing
 **What hypotheses might the experimenter have been testing?**
 
 - "Students will get progressively less accurate as questions were asked"
+- "Do students change their answers when asked the same question over and over?"
 - "3D printed bar charts will lead to more accurate ratio judgments compared to 2D or 3D digital charts."
 - "That 2d is preferred over 3d. It cleans up the data presentation."
 - "The public can more accurately understand data when it is provided to them in a 2-D graph format."
-- "Do students change their answers when asked the same question over and over?"
 
 While some of these hypotheses are not correct (and even amusing), over half of the students made some mention of the use of different types or different dimensionality of graph presentations in their answers, and several more provided reasonable hypotheses about e.g. the use of adjacent bars vs. separated bars in comparisons. 
     
