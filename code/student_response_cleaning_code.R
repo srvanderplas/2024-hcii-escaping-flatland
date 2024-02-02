@@ -71,3 +71,11 @@ questions <- anonymized_responses %>%
   mutate(variables = str_remove_all(variables, "\\d{3,}: ")) %>%
   filter(!str_detect(full_name, "^_"))
 
+library(rlang)
+write_q_lines <- function(df, qtext, qname) {
+  writeLines(c(qtext, "-----", df[[qname]]), paste0("data/student_responses/", qname))
+}
+
+filter(questions, table != "consent", nchar(variables) > nchar("section_sis_id")) %>%
+  mutate(table_act = purrr::map(table, get)) %>%
+  mutate(write_out = purrr::pmap(list(df = .$table_act, qtext = .$variables, qname = .$full_name), write_q_lines))

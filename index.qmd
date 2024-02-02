@@ -385,10 +385,100 @@ It may also be helpful to provide feedback on a few demo trials before participa
 ## Student Responses
 
 Part of the goal of using this experiment as an experiential learning activity was to introduce the idea that not all charts are equally effective to introductory statistics students. 
+In addition, we hoped to reinforce concepts taught in class, such as randomization, experimental control, blocking, and interpretation of results, using experiential learning to help students make the connection between theoretical concepts and how these concepts play out in real life. 
+
+In Fall 2023, this project was offered to students in a 75-person section of online 218 as extra credit. 
+About 40 students both participated and consented to having their responses shared across the 6 different parts of the experiment; only 4 of these components have meaningful responses beyond the question of providing informed consent or a completion code for the experiment, and of these, we will briefly consider questions from the post_experiment reflection, abstract presentation, and presentation. The pre-experiment reflection, which asked students to think about how scientific experimentation works, is less specific to this experiment and will thus be omitted. 
+
+In the next 3 subsections, we will provide some brief excerpts from student responses which provide some insight into student learning and engagement with the experiment. 
+Text files with all student responses for each question are available on github.
+
+### Post-experiment reflection
+Students were asked to complete a reflection activity 1-2 weeks after completing the experiment, with questions designed to encourage them to assess how material from the course applied to their experience.
+
+**What hypotheses might the experimenter have been testing?**
+
+- "Students will get progressively less accurate as questions were asked"
+- "3D printed bar charts will lead to more accurate ratio judgments compared to 2D or 3D digital charts."
+- "That 2d is preferred over 3d. It cleans up the data presentation."
+- "The public can more accurately understand data when it is provided to them in a 2-D graph format."
+- "Do students change their answers when asked the same question over and over?"
+
+While some of these hypotheses are not correct (and even amusing), over half of the students made some mention of the use of different types or different dimensionality of graph presentations in their answers, and several more provided reasonable hypotheses about e.g. the use of adjacent bars vs. separated bars in comparisons. 
+    
+**What sources of error are involved in this experiment?**
+
+- "Fatigue effect over the course of making many judgements, learning patterns from seeing the same ratios multiple times, possibly difference in eyesight among participants."
+- "There are no line values to help measure it when there is a small difference between the graphs."
+- "People that are guessing"
+- "People in the sample misunderstanding directions."
+
+Here, it is clear that students were capable of identifying many of the same sources of error that we have identified when considering the large variability in our results relative to previous studies. 
+
+When asked which variables the experimenter examined and whether these variables were quantitative or categorical, students overwhelmingly (37/41) indicated at least some understanding of the response variables (smaller/larger, % of smaller to larger), and many participants also identified manipulated variables (chart type) and demographic variables (age, gender identity, education level) that may have also been of interest. 
+
+**What elements of experimental design, such as randomization or the use of a control group, do you think were present in the experiment? Why?**
+
+- "I believe every graph was randomized for every student. I also believe the practice was meant to be a bit of the control group."
+- "Randomization was used as participants all received different sets of graphs to examine. A person wasn't assigned to a certain set of graphs and it was up to random chance on which set of graphs they received."
+- "I think that there is randomization but not a control group in my opinion, because there isn't one group that is left alone or not studied...."
+- "Randomization was not used because it was offered as an extra credit assignment in class."
+    
+These responses indicate that participants were actively considering how their experience of the experimental design matched terms used in class. While the final excerpt represents a misunderstanding of the difference between randomization and random sampling, it is clear from these comments that students are using their experience and considering the terms they've learned in class based on those experiences.
+
+### Abstract reflection
+A few weeks after the post-experiment reflection, students were provided with a 2-page extended abstract that described the experiment in a style which was consistent with submission to a conference. Students were asked only a single question, which was **What components of the experiment are clearer now than they were as a participant? What questions do you still have for the experimenter?**
+
+- "I believed that one of the components was the dimension of the graph. However I also thought that the color was the main component and that was not true. The angle was an obvious component I felt, but then again I wondered if it looked that way because I was using my phone."^[Note that students were explicitly instructed to use a laptop (and one was available for their use); it isn't surprising that this student had a hard time using a device with a much smaller screen.]
+
+- "The exam was about perceptual judgement, using the difference between 2D and 3D graphics. This is a different approach than just deciding how much bigger or smaller something is as the participant. A question I have is why we think 3D graphs are harder to perceive than a 2D graph. This seems a bit confusing to me, because they seem to be about the same for me. I also would like to know about the difference between 2D rendered charts compared to a 3D printed chart. Perhaps this is because I took this course online."
+
+- "The scientific question is more clear after reading the extended abstract. I now understand that they wanted to compare differences between 2-dimension, 3-dimension, and printed 3-dimension. They were testing not the correctness, but the perceptual judgment. There was also a formula that they provided for judging how the participant analyzed the bar graphs, and if they were correct provided the formula. The random distribution of ratios also makes sense in that there were 21 different combinations of bar graphs amongst different participants."
+
+- "After reading on the study, I can better understand the reasoning behind it and the purpose of the experiment. I enjoyed that they tried using similar tactics as that of Cleveland and McGill. I thought it was unique that they had strategically planned out the distance between the two bars that were being assessed throughout the study, as I didn't think it was possible to be that in depth and in such detail. Overall, I am impressed by the experiment."
+
+- "After reading the abstract, I was surprised to learn that the subject of the study wasn't the hypothesis I thought it was. Now it's very clear that there's a discrepency between interpreting 3D and 2D graphs/visuals. I am still curious after reading this what the results of the study are based on students feedback. I also want to know if the student results were different then what was expected based on Cleveland/ McGill's study."
+
+Generalizing beyond the excerpts included here, almost all of the students seemed to enjoy finding out what the experiment was about, and came up with reasonable and cogent questions about the experiment beyond what was in the abstract.
+
+### Presentation reflection
+As a final component of this experiment, participants were asked to watch a 15 minute conference-style presentation of the results and reflect on the experiment and information present in the abstract vs. the presentation.
+
+**If you had to hear about this study using only the extended abstract or only the presentation, which one would you prefer? Which one would be better for determining whether the experiment was well designed?**
+
+- "Again I like the presentation better mostly because it adds a more personal touch! The abstract is probably really the best was to understand the design of the experiment. However I struggle reading that kind of material. So for a participant, the video presentation was the best."
+- "I would prefer the presentation. I think that maybe the abstract would be better for determining whether the design of the experiment was better because of the fact that it strictly lays out the experiment and some of what math was involved, whereas even though the presentation did that, it went more in depth about the results as well instead of just the design."
+- "I would prefer hearing about the study using the abstract. I believe it provides more detail on the setup of the experiment, which is better for determining if it was well designed."
+- "If I had to hear about this study using only one source, I would prefer the video presentation. This may be because I am a visual and auditory learner, but I also had a hard time understanding what the researchers wanted us to get out of the abstract because it was so complex. With the presentation, I was able to understand step by step how the study was conducted."
+
+While participants were decidedly mixed on their preferred information transfer method, most agreed that the extended abstract was preferable for understanding design details, while the presentation was more engaging. 
+
+One goal of the introductory statistics class at UNL is to create informed consumers of statistical information. As part of that goal, we asked participants to reflect on what information was available to them at each stage of this project.
+
+**How did the information you gained from the components of this project (participation, post-study reflection, extended abstract, presentation) differ?**
+
+- "Participation gathers real-time, subjective feedback. Post-study reflection provides deeper insights. The extended abstract offers a formal summary, while the presentation conveys findings to a broader audience. Each component serves a unique role in understanding perceptual judgments on 3D printed bars."
+- "The experiment itself didn't make it obvious that 2D presentation of a graph distorts the data, which is an interesting perspective to carry when reading different charts, especially bar graphs. I learned this through the extended abstract and presentation, which drastically changed my thought process when reflecting on why each type of graph led me to believe it had that specific ratio on the slider tool."
+- "I think that with each module, we gained more and more insight into the study and its purpose. It was almost like this video was the last part of a scavenger hunt to find the purpose and idea behind the study and the other components were like little puzzle pieces."
+- "As a participant in the study, having no idea what the purpose was at first, I truly enjoyed the experiment. I felt like I was doing a self-challenge to try and accurately determine how much smaller the smaller graph was. Next, I read the extended abstract and appreciated the purpose of the experiment, its history behind it, and the strategies used within the experiment. When doing the post-study reflection, I feel like I got to tie everything together that I had learned so far. Finishing off with the presentation, I feel like everything became full circle and I found interest in the additional information that was given that wasn't in the extended abstract."
+- "I did not realize the depth of thought that goes into experimental design. As a participant, I had no idea of the depth of the research for this data. Also as I moved through this process it gave me a clearer understanding of the study and its implications. This experiment also helped give me experience in understanding the experiment design process."
+
+Many participants expressed a feeling that information was gradually uncovered over time; the sequential unveiling of information seems to have provided an ongoing engagement and even investment in the study's results, for those who responded. Interestingly, several participants mentioned that the post-study reflection was key for their understanding of the experiment - as no additional information was provided in this reflection, this suggests that the explicit direction to consider how concepts learned in class related to the experiment was a useful exercise for students. 
 
 
 # Discussion
 
 <!-- We expect that there are two likely explanations which may account for differences between our study, @heerCrowdsourcingGraphicalPerception2010, and @clevelandGraphicalPerceptionTheory1984. First, we expect there may be increased variability between estimates obtained from 'involved' participants (such as colleagues) relative to 'uninvolved' participants (such as undergraduates and Mechanical Turkers); this effect might explain the lack of significance between Type 1 and Type 3 comparisons in both our study and @heerCrowdsourcingGraphicalPerception2010 compared to the non-overlapping intervals in @clevelandGraphicalPerceptionTheory1984. In addition, it is possible that more modern 3D visualization methods (physical and rendered 3D objects) are more naturally perceived than the 3D fixed perspective charts (relative to the 2D charts); this effect is likely small, requiring data collection on a larger scale (such as a full year of student data) to produce a precise estimate. Even if there is a significant decrease in accuracy detected with a larger sample, the overall effect size appears to be small, suggesting that other concerns may take precedence over the concerns about estimation accuracy; if the overall picture perceived is reaosnable, it may be worth sacricing accuracy for the ability to show a more complete and integrated view of the data. -->
+
+While this experiment lacked the precision necessary to provide useful insight into visualization design, the process of incorporating these experiments into introductory statistics classes seems to be a valuable tool for motivating student learning. 
+It is possible that we may be able to reduce response variance in future iterations of this experiment by providing numerical feedback, strictly numerical estimation methods, or otherwise manipulating how students interact with the study.
+One of the potential explanations for differences between our study and @clevelandGraphicalPerceptionTheory1984 is that we used numerical sliders; however, another explanation is that students did not estimate ratios with the same amount of care as participants in previous studies. 
+Certainly, it is possible to read some of the student reflections and come to the conclusion that some students simply did not read the instructions or participate in good faith.
+
+A much more valuable outcome of this experiment is that participants seemed to enjoy the overall process of participation in the study and reflection upon the experience during the course of their introductory statistics class. 
+While we did not collect information which allows us to assess whether participation increased student learning, we can see from their reflections that most students were able to make connections between participation in the study and concepts in class when prompted to think about these topics. 
+Moreover, students seem to enjoy the "reveal" moments when reading the abstract and watching the presentation. The sense of completing a puzzle was evident in many of the written responses, and it seems likely that the experience of questioning, forming a hypothesis, and having the hypothesis either supported or rejected through new information may stick with them after the concepts in the course are forgotten. 
+In that sense, this experiment was a success, and embedding basic research and experiential learning in statistics courses may prove to be a valuable pedagogical tool. 
+
 
 # References
