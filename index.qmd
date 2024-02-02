@@ -272,7 +272,7 @@ Participants then were given three practice problems with 2D charts; these were 
 
 Just before the experiment started, participants were provided with the basic trial instructions and asked for a Kit ID (one option was 'online'). 
 Participants who were online were randomly assigned a kit ID that was used throughout the remainder of the study.
-During each trial, participants were asked to evaluate a chart which was either displayed on the screen or randomly chosen from the kit of physical charts by the participant (in this case, they were asked to select the chartID from a list, as shown in @fig-chart-id). 
+During each trial, participants were asked to evaluate a chart which was either displayed on the screen or randomly chosen from the kit of physical charts by the participant (in this case, they were asked to select the chart ID from a list, as shown in @fig-chart-id). 
 
 ![Screen showing the app process when a 3D printed chart was randomly selected](image/05-Experiment-01-filled-in.png){#fig-chart-id}
 
@@ -408,7 +408,7 @@ While some of these hypotheses are not correct (and even amusing), over half of 
     
 **What sources of error are involved in this experiment?**
 
-- "Fatigue effect over the course of making many judgements, learning patterns from seeing the same ratios multiple times, possibly difference in eyesight among participants."
+- "Fatigue effect over the course of making many judgments, learning patterns from seeing the same ratios multiple times, possibly difference in eyesight among participants."
 - "There are no line values to help measure it when there is a small difference between the graphs."
 - "People that are guessing"
 - "People in the sample misunderstanding directions."
@@ -437,7 +437,7 @@ A few weeks after the post-experiment reflection, students were provided with a 
 
 - "After reading on the study, I can better understand the reasoning behind it and the purpose of the experiment. I enjoyed that they tried using similar tactics as that of Cleveland and McGill. I thought it was unique that they had strategically planned out the distance between the two bars that were being assessed throughout the study, as I didn't think it was possible to be that in depth and in such detail. Overall, I am impressed by the experiment."
 
-- "After reading the abstract, I was surprised to learn that the subject of the study wasn't the hypothesis I thought it was. Now it's very clear that there's a discrepency between interpreting 3D and 2D graphs/visuals. I am still curious after reading this what the results of the study are based on students feedback. I also want to know if the student results were different then what was expected based on Cleveland/ McGill's study."
+- "After reading the abstract, I was surprised to learn that the subject of the study wasn't the hypothesis I thought it was. Now it's very clear that there's a discrepancy between interpreting 3D and 2D graphs/visuals. I am still curious after reading this what the results of the study are based on students feedback. I also want to know if the student results were different then what was expected based on Cleveland/ McGill's study."
 
 Generalizing beyond the excerpts included here, almost all of the students seemed to enjoy finding out what the experiment was about, and came up with reasonable and cogent questions about the experiment beyond what was in the abstract.
 
@@ -468,7 +468,7 @@ Many participants expressed a feeling that information was gradually uncovered o
 
 # Discussion
 
-<!-- We expect that there are two likely explanations which may account for differences between our study, @heerCrowdsourcingGraphicalPerception2010, and @clevelandGraphicalPerceptionTheory1984. First, we expect there may be increased variability between estimates obtained from 'involved' participants (such as colleagues) relative to 'uninvolved' participants (such as undergraduates and Mechanical Turkers); this effect might explain the lack of significance between Type 1 and Type 3 comparisons in both our study and @heerCrowdsourcingGraphicalPerception2010 compared to the non-overlapping intervals in @clevelandGraphicalPerceptionTheory1984. In addition, it is possible that more modern 3D visualization methods (physical and rendered 3D objects) are more naturally perceived than the 3D fixed perspective charts (relative to the 2D charts); this effect is likely small, requiring data collection on a larger scale (such as a full year of student data) to produce a precise estimate. Even if there is a significant decrease in accuracy detected with a larger sample, the overall effect size appears to be small, suggesting that other concerns may take precedence over the concerns about estimation accuracy; if the overall picture perceived is reaosnable, it may be worth sacricing accuracy for the ability to show a more complete and integrated view of the data. -->
+<!-- We expect that there are two likely explanations which may account for differences between our study, @heerCrowdsourcingGraphicalPerception2010, and @clevelandGraphicalPerceptionTheory1984. First, we expect there may be increased variability between estimates obtained from 'involved' participants (such as colleagues) relative to 'uninvolved' participants (such as undergraduates and Mechanical Turkers); this effect might explain the lack of significance between Type 1 and Type 3 comparisons in both our study and @heerCrowdsourcingGraphicalPerception2010 compared to the non-overlapping intervals in @clevelandGraphicalPerceptionTheory1984. In addition, it is possible that more modern 3D visualization methods (physical and rendered 3D objects) are more naturally perceived than the 3D fixed perspective charts (relative to the 2D charts); this effect is likely small, requiring data collection on a larger scale (such as a full year of student data) to produce a precise estimate. Even if there is a significant decrease in accuracy detected with a larger sample, the overall effect size appears to be small, suggesting that other concerns may take precedence over the concerns about estimation accuracy; if the overall picture perceived is reasonable, it may be worth sacrificing accuracy for the ability to show a more complete and integrated view of the data. -->
 
 While this experiment lacked the precision necessary to provide useful insight into visualization design, the process of incorporating these experiments into introductory statistics classes seems to be a valuable tool for motivating student learning. 
 It is possible that we may be able to reduce response variance in future iterations of this experiment by providing numerical feedback, strictly numerical estimation methods, or otherwise manipulating how students interact with the study.
