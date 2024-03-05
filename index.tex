@@ -84,6 +84,10 @@
 \newcommand{\eb}[1]{{\textcolor{Green}{#1}}}
 \usepackage[capitalise]{cleveref}
 \makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
 \ifdefined\contentsname
@@ -119,10 +123,18 @@
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
 \makeatother
 \makeatletter
-\makeatother
-\makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
 \makeatother
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
@@ -135,7 +147,7 @@
 \hypersetup{
   pdftitle={Escaping Flatland: Graphics, Dimensionality, and Human Perception},
   pdfauthor={Susan Vanderplas; Erin Blankenship; Tyler Wiederich},
-  pdfkeywords={teaching, graphics, user-study},
+  pdfkeywords={teaching, graphics, user-study, perception, accuracy},
   colorlinks=true,
   linkcolor={blue},
   filecolor={Maroon},
@@ -176,33 +188,34 @@ Hardin Hall North Wing, 3310 Holdrege St., Lincoln, NE, USA,
 \begin{document}
 \maketitle
 \begin{abstract}
-Almost 40 years ago, \textcite{clevelandGraphicalPerceptionTheory1984}
-published the first of 3 papers detailing experiments assessing the
-accuracy of numerical perception using different types of charts. This
-study is often cited as a reason to avoid the use of extraneous
-dimensions in data visualization: 2D bar charts produced more accurate
-estimates than 3D bar charts; in addition, lines (length) produced more
-accurate estimates than circles (area). Graphics have changed fairly
-significantly in the last 40 years: where we once had fixed 3D
-perspective charts, we now can rotate 3D renderings in digital space and
-even 3D print our charts to examine physically. Many optical illusions
-result from perceptual mismatches of 3D visual heuristics and 2D,
-planar, data representations
-\autocite{vanderplasSignsSineIllusion2015,daySineIllusion1991,carswell1991graphing,fischer2000irrelevant,zacksReadingBarGraphs1998a};
+Almost 40 years ago, Cleveland and McGill published the first of 3
+papers detailing experiments assessing the accuracy of numerical
+perception using different types of charts. This study is often cited as
+a reason to avoid the use of extraneous dimensions in data
+visualization: 2D bar charts produced more accurate estimates than 3D
+bar charts; in addition, lines (length) produced more accurate estimates
+than circles (area). Graphics have changed fairly significantly in the
+last 40 years: where we once had fixed 3D perspective charts, we now can
+rotate 3D renderings in digital space and even 3D print our charts to
+examine physically. Many optical illusions result from perceptual
+mismatches of 3D visual heuristics and 2D, planar, data representations;
 more realistic renderings available with modern tools might change the
-outcome of the Cleveland \& McGill comparison of 2D vs.~3D accuracy. In
-this paper, we present several experiments which replicate the bar chart
-portion of Cleveland \& McGill's original study, comparing 2D, 3D fixed
-perspective, 3D rendered, and 3D printed charts. We discuss the findings
-and the importance of replicating classic experiments using modern
-technology, as well as the benefits of incorporating hands-on research
-in introductory classes as experiential learning activities.
-  \keywords{ teaching  \and  graphics  \and  user-study }
+outcome of Cleveland and McGill's experimental comparison of 2D vs.~3D
+accuracy. In this paper, we present several experiments which replicate
+the bar chart portion of Cleveland and McGill's original study,
+comparing 2D, 3D fixed perspective, 3D rendered, and 3D printed charts.
+We discuss the findings and the importance of replicating classic
+experiments using modern technology, as well as the benefits of
+incorporating hands-on research in introductory classes as experiential
+learning activities.
+  \keywords{ teaching  \and  graphics  \and  user-study  \and  perception  \and  accuracy }
 \end{abstract}
-Almost 40 years ago, \citeauthor{clevelandGraphicalPerceptionTheory1984}
-published the first of 3 papers detailing experiments assessing the
-accuracy of numerical perception using different types of charts. This
-study is often used to justify aesthetic advice
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, boxrule=0pt, sharp corners, enhanced, breakable, borderline west={3pt}{0pt}{shadecolor}, interior hidden]}{\end{tcolorbox}}\fi
+
+Almost 40 years ago, Cleveland \& McGill published the first of 3 papers
+detailing experiments assessing the accuracy of numerical perception
+using different types of charts. This study is often used to justify
+aesthetic advice
 \autocite{tufteVisualDisplayQuantitative2001,wainerHowDisplayData1984,kosslynGraphicsHumanInformation1985,kosslynGraphDesignEye2006,wainerPicturingUncertainWorld2009}
 to avoid extraneous dimensions in data visualization, though it never
 reports experimental results for 3D comparisons.
@@ -221,7 +234,8 @@ avoid 3D charts persists, even though the charts tested in
 limited version of the different types of 3D charts which we can
 generate today.
 
-\subsection{Technological Innovation}\label{technological-innovation}
+\hypertarget{technological-innovation}{%
+\subsection{Technological Innovation}\label{technological-innovation}}
 
 While 3D computer graphics have existed since Sketchpad was created in
 1963 \autocite{sutherlandSketchpadManmachineGraphical1963}, and home
@@ -243,8 +257,8 @@ which is still used in packages such as \texttt{rgl} \autocite{rgl} and
 these graphics available for publication in web browsers
 \autocite{parisiWebGLRunning2012,deitsMeshcatdevMeshcatpython2024}.
 
-While \citeauthor{clevelandGraphicalPerceptionTheory1984} did directly
-examine volume comparisons in any of their experiments
+While Cleveland \& McGill did directly examine volume comparisons in any
+of their experiments
 \autocite{clevelandGraphicalPerceptionTheory1984,clevelandGraphicalPerceptionGraphical1985,clevelandGraphicalPerceptionVisual1987},
 it seems reasonable to conclude that the capabilities to create and
 interact with rendered 3D graphics have moved well beyond the simple
@@ -257,26 +271,40 @@ Figure~\ref{fig-modern3d}.
 
 \begin{minipage}[t]{0.48\linewidth}
 
-\centering{
+{\centering 
+
+\raisebox{-\height}{
 
 \includegraphics{image/CM1984Fig10_inkscape.png}
+
+}
 
 }
 
 \subcaption{\label{fig-vol-chart}Volume chart recreated from
 \textcite{clevelandGraphicalPerceptionTheory1984}. Stimuli used in the
 experiment were printed and provided to participants on paper.}
-
 \end{minipage}%
 %
 \begin{minipage}[t]{0.05\linewidth}
-~\end{minipage}%
+
+{\centering 
+
+~
+
+}
+
+\end{minipage}%
 %
 \begin{minipage}[t]{0.48\linewidth}
 
-\centering{
+{\centering 
+
+\raisebox{-\height}{
 
 \includegraphics{image/RenderedChart.png}
+
+}
 
 }
 
@@ -284,13 +312,12 @@ experiment were printed and provided to participants on paper.}
 chart. The WebGL context allows this chart to be manipulated by the
 user; rendered shadows, lighting, and other effects contribute to the
 realism of the 3D effect.}
-
 \end{minipage}%
 
 \caption{\label{fig-graphical-advances}A comparison of 3D data
 renderings from 1984 and 2024.}
 
-\end{figure}%
+\end{figure}
 
 Moreover, we now have the capability to easily create physical objects
 from digital renderings using 3D printers. While 3D printing is
@@ -305,7 +332,8 @@ charts more generally), it is useful to assess both the physical objects
 and the digitally rendered images when comparing to the fixed
 perspectives used in Figure~\ref{fig-vol-chart}.
 
-\subsection{Perception of Graphics}\label{perception-of-graphics}
+\hypertarget{perception-of-graphics}{%
+\subsection{Perception of Graphics}\label{perception-of-graphics}}
 
 Because the visual context of 3D graphical renderings has changed so
 significantly in the past 40 years, it is important to reassess the
@@ -321,9 +349,13 @@ candlestick charts, and even confidence interval bands.
 
 \begin{minipage}[t]{0.48\linewidth}
 
-\centering{
+{\centering 
+
+\raisebox{-\height}{
 
 \includegraphics{image/7006199932_7302488470_o.jpg}
+
+}
 
 }
 
@@ -331,17 +363,27 @@ candlestick charts, and even confidence interval bands.
 which leverages visual heuristics to provide the illusion of depth.
 Image by \href{https://www.flickr.com/photos/billhunt/7006199932}{Bill
 Hunt}.}
-
 \end{minipage}%
 %
 \begin{minipage}[t]{0.05\linewidth}
-~\end{minipage}%
+
+{\centering 
+
+~
+
+}
+
+\end{minipage}%
 %
 \begin{minipage}[t]{0.48\linewidth}
 
-\centering{
+{\centering 
+
+\raisebox{-\height}{
 
 \includegraphics{index_files/figure-pdf/sine-illusion-1.pdf}
+
+}
 
 }
 
@@ -349,14 +391,13 @@ Hunt}.}
 illusion \autocite{vanderplasSignsSineIllusion2015}, also known as the
 line-width illusion. All vertical lines are the same length, but the
 lines in the middle of the curve appear to be much shorter.}
-
 \end{minipage}%
 
 \caption{\label{fig-misperception-2d}Two dimensional situations which
 create the illusion of three dimensions, either intentionally (a) or
 unintentionally (b).}
 
-\end{figure}%
+\end{figure}
 
 A simple example of this phenomenon is shown in
 Figure~\ref{fig-sine-illusion}; evenly spaced line segments are shown
@@ -378,7 +419,8 @@ three-dimensional chart objects may alleviate the decreased precision of
 quantitative estimates found in
 \textcite{clevelandGraphicalPerceptionTheory1984}.
 
-\subsection{Motivation}\label{motivation}
+\hypertarget{motivation}{%
+\subsection{Motivation}\label{motivation}}
 
 In this paper, we present the results from several experiments designed
 to mimic \textcite{clevelandGraphicalPerceptionTheory1984}'s exploration
@@ -392,10 +434,12 @@ replicating classic experiments using modern technology. We also
 describe the benefits of incorporating hands-on research in introductory
 classes as experiential learning activities.
 
-\section{Methodology}\label{methodology}
+\hypertarget{methodology}{%
+\section{Methodology}\label{methodology}}
 
+\hypertarget{participant-recruitment-and-experimental-context}{%
 \subsection{Participant Recruitment and Experimental
-Context}\label{participant-recruitment-and-experimental-context}
+Context}\label{participant-recruitment-and-experimental-context}}
 
 Participants were recruited from online and in-person sections of
 introductory (non-calculus based) statistics courses taught at
@@ -443,21 +487,20 @@ receive course credit, which ensured that they would be able to reflect
 on that experience during the later stages of the experiential learning
 activity.
 
+\hypertarget{replicating-cleveland-mcgill}{%
 \subsection{Replicating Cleveland \&
-McGill}\label{replicating-cleveland-mcgill}
+McGill}\label{replicating-cleveland-mcgill}}
 
 \begin{figure}
 
-\centering{
-
-\includegraphics{image/CM1984Fig4.png}
+{\centering \includegraphics{image/CM1984Fig4.png}
 
 }
 
 \caption{\label{fig-cm-types}Types of judgments used in
 \textcite{clevelandGraphicalPerceptionTheory1984}.}
 
-\end{figure}%
+\end{figure}
 
 We decided to only examine the Type 1 and Type 3 comparisons (e.g.~those
 corresponding to grouped bar charts) because multi-color 3D printing was
@@ -488,7 +531,8 @@ these constraints applied to the stacked bar charts, but not the grouped
 bar charts. To mimic this, we used a scaled Beta(2, 2) distribution to
 define the size of the other 8 bars not used for comparison.
 
-\subsection{Experiment Design}\label{experiment-design}
+\hypertarget{experiment-design}{%
+\subsection{Experiment Design}\label{experiment-design}}
 
 We created 7 sets of data containing 10 bars lengths, one for each
 selected ratio used in
@@ -531,25 +575,26 @@ probability.
 
 \begin{figure}
 
-\centering{
-
-\includegraphics{image/design.png}
+{\centering \includegraphics{image/design.png}
 
 }
 
 \caption{\label{fig-design}Schematic showing how trials were determined
 for each participant.}
 
-\end{figure}%
+\end{figure}
 
-\subsection{Stimulus Creation}\label{stimulus-creation}
+\hypertarget{stimulus-creation}{%
+\subsection{Stimulus Creation}\label{stimulus-creation}}
 
 This experiment uses 4 different presentations of grouped bar charts,
 shown in Figure~\ref{fig-chart-types}.
 
 \begin{figure}
 
-\begin{minipage}[t]{0.25\linewidth}
+\begin{minipage}[b]{0.25\linewidth}
+
+{\centering 
 
 \raisebox{-\height}{
 
@@ -557,10 +602,15 @@ shown in Figure~\ref{fig-chart-types}.
 
 }
 
-\subcaption{\label{}2D}
+\caption{2D}
+
+}
+
 \end{minipage}%
 %
-\begin{minipage}[t]{0.25\linewidth}
+\begin{minipage}[b]{0.25\linewidth}
+
+{\centering 
 
 \raisebox{-\height}{
 
@@ -568,10 +618,15 @@ shown in Figure~\ref{fig-chart-types}.
 
 }
 
-\subcaption{\label{}3D fixed}
+\caption{3D fixed}
+
+}
+
 \end{minipage}%
 %
-\begin{minipage}[t]{0.25\linewidth}
+\begin{minipage}[b]{0.25\linewidth}
+
+{\centering 
 
 \raisebox{-\height}{
 
@@ -579,10 +634,15 @@ shown in Figure~\ref{fig-chart-types}.
 
 }
 
-\subcaption{\label{}3D rendered}
+\caption{3D rendered}
+
+}
+
 \end{minipage}%
 %
-\begin{minipage}[t]{0.25\linewidth}
+\begin{minipage}[b]{0.25\linewidth}
+
+{\centering 
 
 \raisebox{-\height}{
 
@@ -590,13 +650,16 @@ shown in Figure~\ref{fig-chart-types}.
 
 }
 
-\subcaption{\label{}3D printed}
+\caption{3D printed}
+
+}
+
 \end{minipage}%
 
 \caption{\label{fig-chart-types}Rendering types used in this experiment.
 All charts show the same data.}
 
-\end{figure}%
+\end{figure}
 
 It is relatively simple to create an all-digital experiment and keep
 track of the different stimuli (or render them during the experiment
@@ -626,7 +689,8 @@ these using some sort of snapshot of the RGL rendering from a fixed
 angle, we felt using the same tool used in industry would increase
 external validity.
 
-\subsection{App Design}\label{app-design}
+\hypertarget{app-design}{%
+\subsection{App Design}\label{app-design}}
 
 Data were collected using a Shiny app \autocite{shiny}. The app first
 asked participants for informed consent and basic demographic
@@ -642,9 +706,7 @@ in their two experiments.
 
 \begin{figure}
 
-\centering{
-
-\includegraphics{image/03-Practice-2.png}
+{\centering \includegraphics{image/03-Practice-2.png}
 
 }
 
@@ -652,7 +714,7 @@ in their two experiments.
 participants with guidelines for how to use the sliders and identify the
 smaller bar.}
 
-\end{figure}%
+\end{figure}
 
 Just before the experiment started, participants were provided with the
 basic trial instructions and asked for a Kit ID (one option was
@@ -665,16 +727,14 @@ list, as shown in Figure~\ref{fig-chart-id}).
 
 \begin{figure}
 
-\centering{
-
-\includegraphics{image/05-Experiment-01-filled-in.png}
+{\centering \includegraphics{image/05-Experiment-01-filled-in.png}
 
 }
 
 \caption{\label{fig-chart-id}Screen showing the app process when a 3D
 printed chart was randomly selected}
 
-\end{figure}%
+\end{figure}
 
 Participants first identified which bar was smaller, and then used a
 slider with no numerical information to show the ratio of the smaller
@@ -692,9 +752,11 @@ system to receive credit for experiment participation. This code was
 provided regardless of whether participants consented to their data
 being saved for research purposes.
 
-\section{Results}\label{results}
+\hypertarget{results}{%
+\section{Results}\label{results}}
 
-\subsection{Demographics}\label{demographics}
+\hypertarget{demographics}{%
+\subsection{Demographics}\label{demographics}}
 
 Overall, approximately 118 participants met the inclusion criteria
 (above the age of majority and a student in the class). This number is
@@ -707,50 +769,60 @@ responses for privacy purposes.
 
 \begin{minipage}[t]{0.33\linewidth}
 
-\centering{
+{\centering 
+
+\raisebox{-\height}{
 
 \includegraphics{index_files/figure-pdf/fig-demographics-1.pdf}
 
 }
 
-\subcaption{\label{fig-demographics-1}Age}
+}
 
+\subcaption{\label{fig-demographics-1}Age}
 \end{minipage}%
 %
 \begin{minipage}[t]{0.33\linewidth}
 
-\centering{
+{\centering 
+
+\raisebox{-\height}{
 
 \includegraphics{index_files/figure-pdf/fig-demographics-2.pdf}
 
 }
 
-\subcaption{\label{fig-demographics-2}Gender Identity}
+}
 
+\subcaption{\label{fig-demographics-2}Gender Identity}
 \end{minipage}%
 %
 \begin{minipage}[t]{0.33\linewidth}
 
-\centering{
+{\centering 
+
+\raisebox{-\height}{
 
 \includegraphics{index_files/figure-pdf/fig-demographics-3.pdf}
 
 }
 
-\subcaption{\label{fig-demographics-3}Education}
+}
 
+\subcaption{\label{fig-demographics-3}Education}
 \end{minipage}%
 
 \caption{\label{fig-demographics}Participant Demographics. As
 participants were recruited from undergraduate statistics classes,
 imbalances in age, gender, and education level are to be expected.}
 
-\end{figure}%
+\end{figure}
 
 Of these students, there were 100 participants who completed at least 10
 trials.
 
-\subsection{Data Cleaning}\label{data-cleaning}
+\hypertarget{data-cleaning}{%
+\subsection{Data Cleaning}\label{data-cleaning}}
 
 In studies where participants are asked to perform a task, it is
 typically important to utilize both attention checks (semi-obvious
@@ -776,7 +848,8 @@ After applying these basic criteria for inclusion in the data analysis,
 we have 1276 trials completed by 87 participants remaining for further
 analysis.
 
-\subsection{Summary Statistics}\label{summary-statistics}
+\hypertarget{summary-statistics}{%
+\subsection{Summary Statistics}\label{summary-statistics}}
 
 There are far fewer trials of 3D printed charts, largely because only
 online sections were offered during the summer, and relatively few
@@ -786,16 +859,14 @@ charts from further analysis in this study.
 
 \begin{figure}
 
-\centering{
-
-\includegraphics{index_files/figure-pdf/fig-summary-1.pdf}
+{\centering \includegraphics{index_files/figure-pdf/fig-summary-1.pdf}
 
 }
 
 \caption{\label{fig-summary}Number of trials across ratio and plot
 display type.}
 
-\end{figure}%
+\end{figure}
 
 Examining participant responses in Figure~\ref{fig-violin-accuracy}, it
 is clear why \textcite{clevelandGraphicalPerceptionTheory1984} worked
@@ -805,9 +876,7 @@ make much sense.
 
 \begin{figure}
 
-\centering{
-
-\includegraphics{index_files/figure-pdf/fig-violin-accuracy-1.pdf}
+{\centering \includegraphics{index_files/figure-pdf/fig-violin-accuracy-1.pdf}
 
 }
 
@@ -819,9 +888,10 @@ ratio and the central values of the distribution of estimates. Note that
 3D printed plots have been removed from this chart because there were
 too few responses to estimate a distribution.}
 
-\end{figure}%
+\end{figure}
 
-\subsection{Midmeans analysis}\label{midmeans-analysis}
+\hypertarget{midmeans-analysis}{%
+\subsection{Midmeans analysis}\label{midmeans-analysis}}
 
 If we repeat the analysis performed in
 \textcite{clevelandGraphicalPerceptionTheory1984}, examining a 25\%
@@ -861,7 +931,8 @@ comfortable with the input mechanisms; the current demo may not provide
 enough active feedback to really get participants familiar with the
 interface.
 
-\subsection{Student Responses}\label{student-responses}
+\hypertarget{student-responses}{%
+\subsection{Student Responses}\label{student-responses}}
 
 Part of the goal of using this experiment as an experiential learning
 activity was to introduce the idea that not all charts are equally
@@ -887,8 +958,9 @@ student responses which provide some insight into student learning and
 engagement with the experiment. Text files with all student responses
 for each question are available on github.
 
+\hypertarget{post-experiment-reflection}{%
 \subsubsection{Post-experiment
-reflection}\label{post-experiment-reflection}
+reflection}\label{post-experiment-reflection}}
 
 Students were asked to complete a reflection activity 1-2 weeks after
 completing the experiment, with questions designed to encourage them to
@@ -979,7 +1051,8 @@ between randomization and random sampling, it is clear from these
 comments that students are using their experience and considering the
 terms they've learned in class based on those experiences.
 
-\subsubsection{Abstract reflection}\label{abstract-reflection}
+\hypertarget{abstract-reflection}{%
+\subsubsection{Abstract reflection}\label{abstract-reflection}}
 
 A few weeks after the post-experiment reflection, students were provided
 with a 2-page extended abstract that described the experiment in a style
@@ -1040,7 +1113,8 @@ students seemed to enjoy finding out what the experiment was about, and
 came up with reasonable and cogent questions about the experiment beyond
 what was in the abstract.
 
-\subsubsection{Presentation reflection}\label{presentation-reflection}
+\hypertarget{presentation-reflection}{%
+\subsubsection{Presentation reflection}\label{presentation-reflection}}
 
 As a final component of this experiment, participants were asked to
 watch a 15 minute conference-style presentation of the results and
@@ -1144,7 +1218,8 @@ reflection, this suggests that the explicit direction to consider how
 concepts learned in class related to the experiment was a useful
 exercise for students.
 
-\section{Discussion}\label{discussion}
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
 
 While this experiment lacked the precision necessary to provide useful
 insight into visualization design, the process of incorporating these
