@@ -66,7 +66,7 @@ source("code/data_cleaning.R")
 
 <!-- # Introduction -->
 
-Almost 40 years ago, \citeauthor{clevelandGraphicalPerceptionTheory1984} published the first of 3 papers detailing experiments assessing the accuracy of numerical perception using different types of charts. 
+Almost 40 years ago, Cleveland & McGill published the first of 3 papers detailing experiments assessing the accuracy of numerical perception using different types of charts. 
 This study is often used to justify aesthetic advice [@tufteVisualDisplayQuantitative2001;@wainerHowDisplayData1984;@kosslynGraphicsHumanInformation1985;@kosslynGraphDesignEye2006;@wainerPicturingUncertainWorld2009] to avoid extraneous dimensions in data visualization, though it never reports experimental results for 3D  comparisons. 
 @clevelandGraphicalPerceptionTheory1984 create a hierarchy of elementary perceptual tasks, claiming that 2D bars should be more accurately perceived than 3D bars; in addition, lines (length) produced more accurate estimates than circles (area). 
 To support these claims, they ran a series of experiments described over multiple papers [@clevelandGraphicalPerceptionTheory1984;@clevelandGraphicalPerceptionGraphical1985;@clevelandGraphicalPerceptionVisual1987] assessing the accuracy of participant estimations when making comparisons between elements of different types of charts. 
@@ -80,7 +80,7 @@ While 3D computer graphics have existed since Sketchpad was created in 1963 [@su
 What is undeniable, however, is that since the 1990s, the pace of 3D graphics rendering software (and the hardware to support ever-increasing detail) has only accelerated. 
 Two important (and related) software innovations worth mentioning for statistical graphics are the development of OpenGL [@buss3DComputerGraphics2003], which is still used in packages such as `rgl` [@rgl] and `moderngl` [@dombiModernGL2024] and WebGL, which made these graphics available for publication in web browsers [@parisiWebGLRunning2012;@deitsMeshcatdevMeshcatpython2024]. 
 
-While \citeauthor{clevelandGraphicalPerceptionTheory1984} did directly examine volume comparisons in any of their experiments [@clevelandGraphicalPerceptionTheory1984;@clevelandGraphicalPerceptionGraphical1985;@clevelandGraphicalPerceptionVisual1987], it seems reasonable to conclude that the capabilities to create and interact with rendered 3D graphics have moved well beyond the simple image shown in @fig-vol-chart; even the full realism of modern interactive 3D representations is not possible to show in PDF form; a screenshot of one such chart is shown in @fig-modern3d.
+While Cleveland & McGill did directly examine volume comparisons in any of their experiments [@clevelandGraphicalPerceptionTheory1984;@clevelandGraphicalPerceptionGraphical1985;@clevelandGraphicalPerceptionVisual1987], it seems reasonable to conclude that the capabilities to create and interact with rendered 3D graphics have moved well beyond the simple image shown in @fig-vol-chart; even the full realism of modern interactive 3D representations is not possible to show in PDF form; a screenshot of one such chart is shown in @fig-modern3d.
 
 ::: {#fig-graphical-advances layout="[[1,-.1,1]]"}
 ![Volume chart recreated from @clevelandGraphicalPerceptionTheory1984. Stimuli used in the experiment were printed and provided to participants on paper.](image/CM1984Fig10_inkscape.png){#fig-vol-chart}
@@ -230,7 +230,7 @@ Bar2D(datasets$data[[8]], color = colors2[tmpID2], shape_order = 1)
 
 ```
 
-```{r rglWidget, include = F, echo = F}
+```{r rglWidget, include = F, echo = F, eval = F}
 library(rgl)
 params <- list(FOV = 30, ignoreExtent = FALSE, listeners = 1L, mouseMode = c(none = "none", 
 left = "trackball", right = "zoom", middle = "fov", wheel = "pull"
