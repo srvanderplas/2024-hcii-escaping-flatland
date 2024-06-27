@@ -5,7 +5,7 @@ library(purrr)
 library(stringr)
 library(lubridate)
 library(RSQLite)
-
+library(digest)
 # We used different databases each semester
 db_files <- list.files("data", pattern = "\\.db", full.names = T, recursive = T)
 
@@ -60,9 +60,18 @@ user218 <- unnest(data218, "users") %>%
   select(-c("results", "userMat"))  %>%
   mutate(across(matches("(?:app|plot|exp)(?:Start|End)[tT]ime"),
                 as.POSIXct)) %>%
-  mutate(participantID = paste0(nickname, participantUnique)) %>%
   mutate(age = factor(age, levels = age_levels, ordered = T),
-         education = factor(education, levels = ed_levels, ordered = T))
+         education = factor(education, levels = ed_levels, ordered = T)) %>%
+  # Group users who seem to be the same
+  mutate(userAppStartTime2 = round(userAppStartTime, "hour")) %>%
+  nest(data = -c(age, gender, education, participantUnique, userAppStartTime2, nickname)) %>%
+  group_by(age, gender, education, participantUnique) %>%
+  arrange(userAppStartTime2) %>%
+  mutate(nickname = if_else(grepl("Unknown", nickname), paste0(nickname, n()), nickname)) %>%
+  ungroup() %>%
+  unnest(data) %>%
+  mutate(participantID = paste0(nickname, participantUnique))
+
 
 # Track users lost with each step
 userno <- tibble(step = "orig", n = nrow(user218))
@@ -87,6 +96,16 @@ shape_correct <- data.frame(
 full_results <- data218 %>%
   select(-c("userMat", "users"))%>%
   unnest("results") %>%
+  # Group users who seem to be the same
+  mutate(appStartTime = as_datetime(appStartTime)) %>%
+  mutate(appStartTime2 = round(appStartTime, "hour")) %>%
+  nest(data = -c(participantUnique, appStartTime2, nickname)) %>%
+  mutate(nickname = replace_na(nickname, "Unknown")) %>%
+  group_by(participantUnique) %>%
+  arrange(appStartTime2) %>%
+  mutate(nickname = if_else(grepl("Unknown", nickname), paste0(nickname, n()), nickname)) %>%
+  ungroup() %>%
+  unnest(data) %>%
   mutate(participantID = paste0(nickname, participantUnique)) %>%
   mutate(across(matches("(?:app|plot|exp)(?:Start|End)[tT]ime"),
                 as.POSIXct)) %>%

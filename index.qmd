@@ -313,17 +313,17 @@ Overall, approximately `r filter(userno, step == "Consent")$n[1]` participants m
 
 user218 %>%
 ggplot(aes(x = age)) + geom_bar() + theme_bw() + ggtitle("Age of Participants") + theme(axis.title = element_blank()) + geom_text(aes(x = age, y = after_stat(count), label = after_stat(count)), stat = "count", vjust = 0, nudge_y = 1) + 
-  scale_y_continuous(expand = expansion(0, 5))
+  scale_y_continuous(expand = expansion(0, 30))
 
 user218 %>%
 ggplot(aes(x = gender)) + geom_bar() + theme_bw() + ggtitle("Gender Identity of Participants") + theme(axis.title = element_blank()) + geom_text(aes(x = gender, y = after_stat(count), label = after_stat(count)), stat = "count", vjust = 0, nudge_y = 1) + 
-  scale_y_continuous(expand = expansion(0, 5))
+  scale_y_continuous(expand = expansion(0, 20))
 
 edlab <- data.frame(education = ed_levels, lab = c("High\nSchool", "Some\nUG", "UG\nDegree", "Some\nGrad", "Grad\nDegree", "No\nAnswer") %>% factor(., levels = ., ordered = T))
 user218 %>%
   left_join(edlab, by = "education") %>%
 ggplot(aes(x = lab)) + geom_bar() + theme_bw() + ggtitle("Education Level of Participants") + theme(axis.title = element_blank()) + geom_text(aes(x = lab, y = after_stat(count), label = after_stat(count)), stat = "count", vjust = 0, nudge_y = 1) + 
-  scale_y_continuous(expand = expansion(0, 5))
+  scale_y_continuous(expand = expansion(0, 20))
 ```
 
 Of these students, there were `r nrow(unique_user_data)` participants who completed at least 10 trials. 

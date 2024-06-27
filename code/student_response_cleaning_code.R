@@ -5,6 +5,8 @@ library(purrr)
 library(stringr)
 
 load("data/218-c-1238.Rdata")
+#
+# students_responses <- read_csv("data/2024-a-sections.csv")
 
 
 consent_names <- c("id", "section", "consent_submit_time", "_1",
