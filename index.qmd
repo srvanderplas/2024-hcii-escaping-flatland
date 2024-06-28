@@ -369,14 +369,14 @@ Examining participant responses in @fig-violin-accuracy, it is clear why @clevel
 #| echo: false
 
 results %>%
-  filter(plot != "3D Print") %>%
+  # filter(plot != "3D Print") %>%
 ggplot(aes(x = ratioLabel, y = byHowMuch)) + 
   geom_abline(slope = 1, intercept = 0, color = "grey") + 
   geom_jitter(alpha = .25) + 
   geom_violin(aes(group = factor(ratioLabel)), alpha = .5, draw_quantiles = c(.25, .5, .75)) + 
-  facet_wrap(~plot) + theme_bw() + 
+  facet_wrap(~plot, nrow = 1) + theme_bw() + 
   scale_x_continuous("True Bar Ratio", breaks = round(unique(results$true_ratio*100)), minor_breaks = NULL, limits = c(0, 100)) + 
-  scale_y_continuous("Estimated Bar Ratio") + 
+  scale_y_continuous("Estimated Bar Ratio", breaks = seq(0, 100, 10), minor_breaks = seq(0, 100,)) + 
   coord_fixed()
 ```
 

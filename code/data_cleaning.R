@@ -113,7 +113,7 @@ full_results <- data218 %>%
   filter(participantID %in% user218$participantID) %>%
   # Add in true ratio information
   left_join(trueRatios, by = 'fileID') %>%
-  mutate(log2diff = log2(abs(byHowMuch - true_ratio*100) + 1/8),
+  mutate(log2diff = log2(abs(byHowMuch/100 - true_ratio) + 1/8),
          absdiff = (byHowMuch - true_ratio*100)/(true_ratio*100),
          ratioLabel = round(100*true_ratio, 1)) %>%
   arrange(appStartTime) %>%
